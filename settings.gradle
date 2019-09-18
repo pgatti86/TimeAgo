@@ -1,0 +1,2 @@
+include ':timeago'
+rootProject.name='TimeAgo'
