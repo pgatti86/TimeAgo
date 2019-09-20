@@ -1,2 +1,2 @@
-include ':timeago'
+include ':timeago', ':sample'
 rootProject.name='TimeAgo'
