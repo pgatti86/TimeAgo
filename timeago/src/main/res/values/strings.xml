@@ -15,4 +15,11 @@
     <string name="last_week">Last week</string>
     <string name="last_year">Last year</string>
     <string name="yesterday">yesterday</string>
+
+    <string name="simple_years_ago">%dy</string>
+    <string name="simple_weeks_ago">%dw</string>
+    <string name="simple_days_ago">%dd</string>
+    <string name="simple_hours_ago">%dh</string>
+    <string name="simple_minutes_ago">%dm</string>
+    <string name="simple_seconds_ago">%ds</string>
 </resources>

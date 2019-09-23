@@ -15,9 +15,9 @@ const val DAY = HOUR * 24L
 const val WEEK = DAY * 7L
 const val YEAR = DAY * 365L
 
-fun Date.timeAgo(context: Context): String = timeAgo(context, this.time)
+fun Date.timeAgo(context: Context): String = timeAgo(context, time)
 
-fun Calendar.timeAgo(context: Context): String = timeAgo(context, this.timeInMillis)
+fun Calendar.timeAgo(context: Context): String = timeAgo(context, timeInMillis)
 
 fun timeAgo(context: Context, millis: Long): String {
     val elapsedTime = Date().time - millis
@@ -65,6 +65,49 @@ fun timeAgo(context: Context, millis: Long): String {
             elapsedTime / YEAR
         )
 
-        else -> throw IllegalStateException("The date requested was in future")
+        else -> throw IllegalStateException("The requested date is in future")
+    }
+}
+
+fun Date.simpleTimeAgo(context: Context) = simpleTimeAgo(context, time)
+
+fun Calendar.simpleTimeAgo(context: Context) = simpleTimeAgo(context, timeInMillis)
+
+fun simpleTimeAgo(context: Context, millis: Long): String {
+    val elapsedTime = Date().time - millis
+
+    return when {
+
+        elapsedTime in 0 until MINUTE -> context.getString(
+            R.string.simple_seconds_ago,
+            elapsedTime / SECOND
+        )
+
+        elapsedTime < HOUR -> context.getString(
+            R.string.simple_minutes_ago,
+            elapsedTime / MINUTE
+        )
+
+        elapsedTime < DAY -> context.getString(
+            R.string.simple_hours_ago,
+            elapsedTime / HOUR
+        )
+
+        elapsedTime < WEEK -> context.getString(
+            R.string.simple_days_ago,
+            elapsedTime / DAY
+        )
+
+        elapsedTime < YEAR -> context.getString(
+            R.string.simple_weeks_ago,
+            elapsedTime / WEEK
+        )
+
+        elapsedTime >= YEAR -> context.getString(
+            R.string.simple_years_ago,
+            elapsedTime / YEAR
+        )
+
+        else -> throw IllegalStateException("The requested date is in future")
     }
 }
