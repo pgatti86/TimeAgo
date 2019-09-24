@@ -22,4 +22,11 @@
     <string name="simple_hours_ago">%dh</string>
     <string name="simple_minutes_ago">%dm</string>
     <string name="simple_seconds_ago">%ds</string>
+
+    <string name="one_year_ago">1 year ago</string>
+    <string name="one_month_ago">1 month ago</string>
+    <string name="one_week_ago">1 week ago</string>
+    <string name="one_day_ago">1 day ago</string>
+    <string name="one_hour_ago">1 hour ago</string>
+    <string name="one_minute_ago">1 minute ago</string>
 </resources>
