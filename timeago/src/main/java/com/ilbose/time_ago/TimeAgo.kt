@@ -22,6 +22,8 @@ const val HOURS_IN_A_DAY = 24
 const val MINUTES_IN_AN_HOUR = 60
 const val SECONDS_IN_A_MINUTE = 60
 
+const val SPACE = " "
+
 fun Date.timeAgo(context: Context): String = timeAgo(context, time)
 
 fun Calendar.timeAgo(context: Context): String = timeAgo(context, timeInMillis)
@@ -124,28 +126,49 @@ fun Date.fullTimeAgo(context: Context) = fullTimeAgo(context, time)
 fun Calendar.fullTimeAgo(context: Context) = fullTimeAgo(context, timeInMillis)
 
 fun fullTimeAgo(context: Context, millis: Long): String {
-    val elapsedTime = Date().time - millis
 
-    var content = ""
+    val elapsedTime = Date().time - millis
 
     val years = elapsedTime / YEAR
     val weeks = elapsedTime / WEEK % WEEKS_IN_A_YEAR
-    val days = (elapsedTime / DAY  % DAYS_IN_A_YEAR) % DAYS_IN_A_WEEK
+    val days = (elapsedTime / DAY % DAYS_IN_A_YEAR) % DAYS_IN_A_WEEK
     val hours = elapsedTime / HOUR % HOURS_IN_A_DAY
     val minutes = elapsedTime / MINUTE % MINUTES_IN_AN_HOUR
     val seconds = elapsedTime / SECOND % SECONDS_IN_A_MINUTE
 
-    if (years > 0L) content += context.getString(R.string.simple_years_ago, years) + " "
+    return buildString {
 
-    if (weeks > 0L) content += context.getString(R.string.simple_weeks_ago, weeks) + " "
+        if (years > 0L) {
+            append(context.getString(R.string.simple_years_ago, years))
+            append(SPACE)
+        }
 
-    if (days > 0L) content += context.getString(R.string.simple_days_ago, days) + " "
+        if (weeks > 0L) {
+            append(context.getString(R.string.simple_weeks_ago, weeks))
+            append(SPACE)
+        }
 
-    if (hours > 0L) content += context.getString(R.string.simple_hours_ago, hours) + " "
+        if (days > 0L) {
+            append(context.getString(R.string.simple_days_ago, days))
+            append(SPACE)
+        }
 
-    if (minutes > 0L) content += context.getString(R.string.simple_minutes_ago, minutes) + " "
+        if (hours > 0L) {
+            append(context.getString(R.string.simple_hours_ago, hours))
+            append(SPACE)
+        }
 
-    if (seconds > 0L) content += context.getString(R.string.simple_seconds_ago, seconds)
 
-    return content.trim()
+        if (minutes > 0L) {
+            append(context.getString(R.string.simple_minutes_ago, minutes))
+            append(SPACE)
+        }
+
+        if (seconds > 0L) {
+            append(context.getString(R.string.simple_seconds_ago, seconds))
+            append(SPACE)
+        }
+
+        trim()
+    }
 }
